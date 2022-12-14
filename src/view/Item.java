@@ -120,16 +120,6 @@ public class Item extends JPanel {
 			}
 		};
 	}
-
-	private MouseAdapter mouseClicked() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//showBookDialog();
-			}
-		};
-	}
-	
 	
 	
 	// Metodos para manejar el efecto Hover

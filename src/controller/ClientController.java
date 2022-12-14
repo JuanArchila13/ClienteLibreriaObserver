@@ -53,9 +53,15 @@ public class ClientController implements ActionListener,Utilities{
 					response = net.getMyGson().fromJson(net.getInput().readUTF(), response.getClass());
 					if(response.isNotify()) {
 						if(isSessionActive) {
-							initializeUserView(response.getBooks(), response.getBooksRented(), response.getProfile());
+							System.out.println("Notificacion");
+							initializeUserData(response.getBooks(), response.getBooksRented(), response.getProfile());
 						}
 					} else {
+						if(response.getOption().equals("EXIT")) {
+							isActive = false;
+							window.dispose();
+							socket.close();
+						}
 						protocol(response);
 					}
 				}
@@ -109,9 +115,9 @@ public class ClientController implements ActionListener,Utilities{
 				window.closeMessageDialog();
 			break;
 			case "EXIT":
-				isActive = false;
-				isSessionActive = false;
-				window.dispose();
+				Request request = new Request();
+				request.setAppOption(event);
+				net.getOutput().writeUTF(net.getMyGson().toJson(request));
 				break;
 			case "MIN":
 				window.setExtendedState(JFrame.ICONIFIED);
@@ -130,6 +136,7 @@ public class ClientController implements ActionListener,Utilities{
 			if(response.isValid()) {
 				Response newResponse = net.getMyGson().fromJson(net.getInput().readUTF(), Response.class);
 				if(!newResponse.isValid()) {
+					isSessionActive = true;
 					this.initializeUserView(newResponse.getBooks(), newResponse.getBooksRented(), newResponse.getProfile());
 				}else {
 					window.showMessageDialog(SESSION_IS_ACTIVE);
@@ -156,10 +163,6 @@ public class ClientController implements ActionListener,Utilities{
 			window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
 			window.closeDialogRentedBook();
 			break;
-		case "EXIT":
-			isActive = false;
-			isSessionActive = false;
-			break;
 		}
 	}
 	
@@ -172,14 +175,24 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private void initializeUserView(ArrayList<Book> books, ArrayList<CopyBook> rentedBooks, Person user) throws JsonSyntaxException, IOException {
+		window.setBookSet(books);
+		window.setBooksRented(rentedBooks);
+		window.setProfile(user);
+		window.initComponentsUser();
+	}
+	
+	private void initializeUserData(ArrayList<Book> books, ArrayList<CopyBook> rentedBooks, Person user) throws JsonSyntaxException, IOException {
 		window.setVisible(false);
+		Person profile = window.getProfile();
 		window = new MainWindow(this);
 		window.setBookSet(books);
 		window.setBooksRented(rentedBooks);
 		if(!isSessionActive) {
-			window.setProfile(user);
+			window.initLoginPanel();
+		}else {
+			window.setProfile(profile);
+			window.initData();
 		}
-		window.initComponentsUser();
 		init();
 	}
 	
@@ -192,6 +205,10 @@ public class ClientController implements ActionListener,Utilities{
 	
 	private void rentBook(String option) throws IOException {
 		Request request = new Request();
+		request.setBook(window.obtainRentBook());
+		System.out.println(window.obtainRentBook().toString());
+		request.setPerson(window.getProfile());
+		request.setAppOption(option);
 		net.getOutput().writeUTF(net.getMyGson().toJson(request));
 	}
 	

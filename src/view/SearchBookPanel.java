@@ -32,6 +32,7 @@ public class SearchBookPanel extends JPanel {
 		setBackground(MainWindow.WHITECOLOR);
 		setLayout(null);
 		initComponents();
+		initQueryPanel();
 	}
 	
 	private void initComponents() {

@@ -57,9 +57,10 @@ public class BookDialog extends JDialog {
 		
 		JLabel lblImage = new JLabel();
 		lblImage.setBounds(10, 11, 160, 234);
-		Image image = new ImageIcon(book.getBytesImage()).getImage();
-		ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
-		lblImage.setIcon(icon);
+		//Image image = new ImageIcon(book.getBytesImage()).getImage();
+		
+		//ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
+		//lblImage.setIcon(icon);
 
 		bookPanel.add(lblImage);
 		
