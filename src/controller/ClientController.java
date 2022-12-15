@@ -182,9 +182,7 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private void initializeUserData(ArrayList<Book> books, ArrayList<CopyBook> rentedBooks, Person user) throws JsonSyntaxException, IOException {
-		window.setVisible(false);
 		Person profile = window.getProfile();
-		window = new MainWindow(this);
 		window.setBookSet(books);
 		window.setBooksRented(rentedBooks);
 		if(!isSessionActive) {
@@ -193,7 +191,6 @@ public class ClientController implements ActionListener,Utilities{
 			window.setProfile(profile);
 			window.initData();
 		}
-		init();
 	}
 	
 	private void createAccountUser(String option) throws IOException {

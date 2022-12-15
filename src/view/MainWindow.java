@@ -79,7 +79,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener {
 
 	// Metodo para inciar componentes generales de la GUI(Cabecera y un panel para
 	// el contenido en contentPane)
-	private void initComponents() {
+	private void initHead() {
 		header = new JPanel();
 		header.setBounds(0, 0, 1200, 45);
 		header.setLayout(null);
@@ -93,13 +93,13 @@ public class MainWindow extends JFrame implements Utilities, MouseListener {
 		btnExit.setForeground(WHITECOLOR);
 		btnExit.setBackground(MAINCOLOR);
 		btnExit.setBounds(1157, 0, 43, 43);
+		btnExit.setFocusable(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setMargin(new Insets(1, 1, 1, 1));
-		;
+		
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExit.addActionListener(listener);
 		btnExit.setActionCommand("EXIT");
-		btnExit.setFocusable(false);
 		btnExit.addMouseListener(this.mouseEntered());
 		btnExit.addMouseListener(this.mouseExited());
 		header.add(btnExit);
@@ -111,18 +111,19 @@ public class MainWindow extends JFrame implements Utilities, MouseListener {
 		btnMin.setForeground(WHITECOLOR);
 		btnMin.setBackground(MAINCOLOR);
 		btnMin.setBounds(1113, 0, 43, 43);
+		btnMin.setFocusable(false);
 		btnMin.setBorderPainted(false);
 		btnMin.setMargin(new Insets(1, 1, 1, 1));
-		;
 		btnMin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnMin.setFocusable(false);
 		btnMin.addActionListener(listener);
 		btnMin.setActionCommand("MIN");
 		btnMin.addMouseListener(this.mouseEntered());
 		btnMin.addMouseListener(this.mouseExited());
 		header.add(btnMin);
-		getContentPane().add(header);
-
+		contentPane.add(header);
+	}
+	private void initComponents() {
+		initHead();
 		contentData = new JPanel();
 		contentData.setBounds(0, 43, 1200, 637);
 		contentData.setLayout(null);
@@ -188,21 +189,13 @@ public class MainWindow extends JFrame implements Utilities, MouseListener {
 
 	// Actualización de ventana al recibir noticifacion
 	public void initData() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
-		setContentPane(contentPane);
-		
-		/*
-		contentData = new JPanel();
-		contentData.setBounds(0, 43, 1200, 637);
-		contentData.setLayout(null);
-		contentPane.add(contentData);
-		*/
-	
-		initComponents();
+		initHead();
+		JPanel newContentData = new JPanel();
+		newContentData.setBounds(0, 43, 1200, 637);
+		newContentData.setLayout(null);
+		contentPane.add(newContentData);
+		showPanel(contentData, newContentData);
 		initComponentsUser();
-		initAllUserPanels();
 	}
 
 	public void putVisibilitySearchBook() {
