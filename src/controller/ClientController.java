@@ -53,7 +53,6 @@ public class ClientController implements ActionListener,Utilities{
 					response = net.getMyGson().fromJson(net.getInput().readUTF(), response.getClass());
 					if(response.isNotify()) {
 						if(isSessionActive) {
-							System.out.println("Notificacion");
 							initializeUserData(response.getBooks(), response.getBooksRented(), response.getProfile());
 						}
 					} else {
@@ -206,7 +205,6 @@ public class ClientController implements ActionListener,Utilities{
 	private void rentBook(String option) throws IOException {
 		Request request = new Request();
 		request.setBook(window.obtainRentBook());
-		System.out.println(window.obtainRentBook().toString());
 		request.setPerson(window.getProfile());
 		request.setAppOption(option);
 		net.getOutput().writeUTF(net.getMyGson().toJson(request));
