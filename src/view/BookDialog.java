@@ -122,6 +122,7 @@ public class BookDialog extends JDialog {
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
 		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCancel.setFocusable(false);
+		btnCancel.addActionListener(actionListener);
 		btnCancel.setActionCommand("CANCEL_RENT_BOOK");
 		btnCancel.addMouseListener(this.mouseClicked());
 		btnCancel.addMouseListener(this.mouseEntered());

@@ -56,6 +56,7 @@ public class ClientController implements ActionListener,Utilities{
 							initializeUserData(response.getBooks(), response.getBooksRented(), response.getProfile());
 						}
 					} else {
+						System.out.println("Response opcion: " + response.getOption());
 						if(response.getOption().equals("EXIT")) {
 							isActive = false;
 							window.dispose();
@@ -112,7 +113,7 @@ public class ClientController implements ActionListener,Utilities{
 				break;
 			case "ACCEPT_MESSAGE":
 				window.closeMessageDialog();
-			break;
+				break;
 			case "EXIT":
 				Request request = new Request();
 				request.setAppOption(event);
@@ -142,7 +143,7 @@ public class ClientController implements ActionListener,Utilities{
 					window.clearFieldsLogin();
 				}
 			}else {
-				window.showMessageDialog(ADMIN_NO_REGISTER);
+				window.showMessageDialog(USER_NO_REGISTER);
 				window.clearFieldsLogin();
 			}
 			break;

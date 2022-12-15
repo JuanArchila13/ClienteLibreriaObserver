@@ -23,7 +23,6 @@ public class ReadConfigs {
 		}
 	}
 	public int obtainPort() {
-		System.out.println(properties.getProperty("IPConfig"));
 		return Integer.parseInt(properties.getProperty("IPConfig"));
 	}
 	
