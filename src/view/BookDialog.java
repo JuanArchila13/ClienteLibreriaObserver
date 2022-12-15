@@ -32,7 +32,7 @@ public class BookDialog extends JDialog {
 	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Book book) {
 		super(frame,mode);
 		this.book = book;
-		setSize(478,345);
+		setSize(534,375);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setLayout(null);
@@ -46,17 +46,17 @@ public class BookDialog extends JDialog {
 		
 		getContentPane().setLayout(null);
 		this.bookPanel = new JPanel();
-		bookPanel.setBounds(0,0,462,256);
+		bookPanel.setBounds(0,0,518,336);
 		JLabel lblTitle = new JLabel();
 		lblTitle.setText(book.getTitle());
-		lblTitle.setBounds(180, 11, 272, 31);
+		lblTitle.setBounds(188, 11, 320, 31);
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		bookPanel.add(lblTitle);
 		
 		JLabel lblImage = new JLabel();
-		lblImage.setBounds(10, 11, 160, 234);
+		lblImage.setBounds(18, 11, 160, 234);
 		//Image image = new ImageIcon(book.getBytesImage()).getImage();
 		
 		//ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
@@ -65,27 +65,28 @@ public class BookDialog extends JDialog {
 		bookPanel.add(lblImage);
 		
 		JLabel lblAuthor = new JLabel(book.getAuthor());
-		lblAuthor.setBounds(271, 53, 94, 20);
+		lblAuthor.setBounds(188, 53, 320, 20);
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblAuthor.setForeground(MainWindow.MAINCOLOR);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblYear = new JLabel(book.getDepartureYear());
-		lblYear.setBounds(271, 74, 94, 20);
+		lblYear.setBounds(188, 74, 320, 20);
 		lblYear.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setText(book.getDescription());
-		textArea.setBounds(180, 105, 272, 67);
+		textArea.setBounds(197, 125, 311, 110);
 		textArea.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textArea.setEnabled(false);
 		textArea.setForeground(MainWindow.STRONGBLACK);
 		textArea.setBackground(MainWindow.WHITECOLOR);
+	
 		
 		btnRentBook = new JButton("Rentar");
-		btnRentBook.setBounds(179, 206, 125, 39);
+		btnRentBook.setBounds(196, 246, 125, 39);
 		btnRentBook.setAlignmentX(CENTER_ALIGNMENT);
 		btnRentBook.setForeground(MainWindow.WHITECOLOR);
 		btnRentBook.setBackground(MainWindow.MAINCOLOR);
@@ -115,7 +116,7 @@ public class BookDialog extends JDialog {
 		btnRentBook.setAlignmentX(BOTTOM_ALIGNMENT);
 		
 		btnCancel = new JButton("Cancelar");
-		btnCancel.setBounds(327, 206, 125, 39);
+		btnCancel.setBounds(383, 246, 125, 39);
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
