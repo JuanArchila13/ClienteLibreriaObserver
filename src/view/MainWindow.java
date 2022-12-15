@@ -365,7 +365,6 @@ public class MainWindow extends JFrame implements Utilities, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().getClass().equals(Item.class)) {
 			Item item = (Item) e.getSource();
-			System.out.println("Clic en item");
 			bookDialog = new BookDialog(true, this, listener, item.obtainBook());
 			bookDialog.setVisible(true);
 			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
