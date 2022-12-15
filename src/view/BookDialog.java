@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import structure.Book;
@@ -83,7 +84,13 @@ public class BookDialog extends JDialog {
 		textArea.setEnabled(false);
 		textArea.setForeground(MainWindow.STRONGBLACK);
 		textArea.setBackground(MainWindow.WHITECOLOR);
-	
+		bookPanel.add(textArea);
+		
+		
+	    JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setBounds(197, 125, 311, 110);
+        bookPanel.add(scroll);
+        
 		
 		btnRentBook = new JButton("Rentar");
 		btnRentBook.setBounds(196, 246, 125, 39);
@@ -128,7 +135,6 @@ public class BookDialog extends JDialog {
 		btnCancel.addMouseListener(this.mouseEntered());
 		
 		bookPanel.add(lblAuthor);
-		bookPanel.add(textArea);
 		bookPanel.add(lblYear);
 		verifyQuantity();
 		bookPanel.add(btnRentBook);
